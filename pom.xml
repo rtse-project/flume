@@ -869,51 +869,7 @@ limitations under the License.
     </configuration>
 </plugin>
 
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-      </plugin>
 
-      <!-- Run checkstyle as part of the "verify" phase. See
-           https://maven.apache.org/plugins/maven-checkstyle-plugin/examples/multi-module-config.html
-           for how to configure plugin for a multi-module project. -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${checkstyle.plugin.version}</version>
-        <dependencies>
-          <!-- The flume-checkstyle module adds the checkstyle config files to the classpath. -->
-          <dependency>
-            <groupId>org.apache.flume</groupId>
-            <artifactId>flume-checkstyle</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <!-- Newer versions of puppycrawl checkstyle have more features. Pull in a more recent
-               version than is specified in the maven-checkstyle-plugin pom file. -->
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${checkstyle.tool.version}</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>verify</id>
-            <phase>verify</phase>
-            <configuration>
-              <configLocation>flume/checkstyle.xml</configLocation>
-              <suppressionsLocation>flume/checkstyle-suppressions.xml</suppressionsLocation>
-              <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-              <encoding>UTF-8</encoding>
-              <includeTestSourceDirectory>true</includeTestSourceDirectory>
-              <linkXRef>false</linkXRef>
-            </configuration>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
 
     </plugins>
 
@@ -950,44 +906,7 @@ limitations under the License.
           </configuration>
         </plugin>
 
-        <plugin>
-          <groupId>org.apache.rat</groupId>
-          <artifactId>apache-rat-plugin</artifactId>
-          <version>${rat.version}</version>
-          <executions>
-            <execution>
-              <id>verify.rat</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <excludes>
-                  <exclude>**/.idea/</exclude>
-                  <exclude>**/*.iml</exclude>
-                  <exclude>**/nb-configuration.xml</exclude>
-                  <exclude>.git/</exclude>
-                  <exclude>patchprocess/</exclude>
-                  <exclude>.gitignore</exclude>
-                  <!-- ASF jenkins box puts the Maven repo in our root directory. -->
-                  <exclude>.repository/</exclude>
-                  <exclude>**/*.diff</exclude>
-                  <exclude>**/*.patch</exclude>
-                  <exclude>**/*.avsc</exclude>
-                  <exclude>**/*.avro</exclude>
-                  <exclude>**/docs/**</exclude>
-                  <exclude>**/test/resources/**</exclude>
-                  <exclude>**/.settings/*</exclude>
-                  <exclude>**/.classpath</exclude>
-                  <exclude>**/.project</exclude>
-                  <exclude>**/target/**</exclude>
-                  <exclude>**/derby.log</exclude>
-                  <exclude>**/metastore_db/</exclude>
-                </excludes>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
+        
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
