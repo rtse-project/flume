@@ -41,11 +41,8 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.MiniDFSCluster;
 import org.apache.hadoop.hdfs.server.namenode.NameNodeAdapter;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.Timeout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,6 +51,9 @@ import org.slf4j.LoggerFactory;
  * TODO: figure out how to unit-test Kerberos-secured HDFS.
  */
 public class TestHDFSEventSinkOnMiniCluster {
+
+  @Rule
+  public Timeout globalTimeout= new Timeout(480000);
 
   private static final Logger logger =
       LoggerFactory.getLogger(TestHDFSEventSinkOnMiniCluster.class);
